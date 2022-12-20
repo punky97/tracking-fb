@@ -1,0 +1,711 @@
+{
+  "swagger": "",
+  "info": {
+    "title": "",
+    "version": "",
+    "contact": {},
+    "license": {}
+  },
+  "paths": {
+    "/admin/customers": {
+      "post": {
+        "responses": null,
+        "tags": [
+          "Customer"
+        ],
+        "operationId": "Creates a customer",
+        "security": [
+          {
+            "APP_ACCESS_TOKEN": [
+              "write_customers"
+            ]
+          }
+        ]
+      }
+    },
+    "/admin/customers/count": {
+      "get": {
+        "responses": null,
+        "tags": [
+          "Customer"
+        ],
+        "operationId": "Retrieves a count of all customers",
+        "security": [
+          {
+            "APP_ACCESS_TOKEN": [
+              "read_customers"
+            ]
+          }
+        ]
+      }
+    },
+    "/admin/customers/deletes": {
+      "post": {
+        "responses": null,
+        "tags": [
+          "Customer"
+        ],
+        "operationId": "Deletes multiples customer",
+        "security": [
+          {
+            "SHOP_ACCESS_TOKEN": [
+              "write_customers"
+            ]
+          }
+        ]
+      }
+    },
+    "/admin/customers/export": {
+      "post": {
+        "responses": null,
+        "tags": [
+          "Customer"
+        ],
+        "operationId": "Export Customers",
+        "security": [
+          {
+            "SHOP_ACCESS_TOKEN": [
+              "write_customers"
+            ]
+          }
+        ]
+      }
+    },
+    "/admin/customers/import": {
+      "post": {
+        "responses": null,
+        "tags": [
+          "Customer"
+        ],
+        "operationId": "Import Customers",
+        "security": [
+          {
+            "SHOP_ACCESS_TOKEN": [
+              "write_customers"
+            ]
+          }
+        ]
+      }
+    },
+    "/admin/customers/{customer_id:[0-9]+}/account_activation_url": {
+      "post": {
+        "responses": null,
+        "tags": [
+          "Customer"
+        ],
+        "operationId": "Generate account activation url for customer",
+        "security": [
+          {
+            "APP_ACCESS_TOKEN": [
+              "write_customers"
+            ]
+          }
+        ]
+      }
+    },
+    "/admin/customers/{customer_id:[0-9]+}/addresses": {
+      "post": {
+        "responses": null,
+        "tags": [
+          "Customer"
+        ],
+        "operationId": "Create customer address for customer",
+        "security": [
+          {
+            "APP_ACCESS_TOKEN": [
+              "write_customers"
+            ]
+          }
+        ]
+      }
+    },
+    "/admin/customers/{customer_id:[0-9]+}/addresses/set": {
+      "put": {
+        "responses": null,
+        "tags": [
+          "Customer"
+        ],
+        "operationId": "Delete bulk customer addresses by customer ids",
+        "security": [
+          {
+            "APP_ACCESS_TOKEN": [
+              "write_customers"
+            ]
+          }
+        ]
+      }
+    },
+    "/admin/customers/{customer_id:[0-9]+}/addresses/{address_id:[0-9]+}": {
+      "get": {
+        "responses": null,
+        "tags": [
+          "Customer"
+        ],
+        "operationId": "Get customer address by customer id and address id",
+        "security": [
+          {
+            "APP_ACCESS_TOKEN": [
+              "read_customers"
+            ]
+          }
+        ]
+      }
+    },
+    "/admin/customers/{customer_id:[0-9]+}/addresses/{address_id:[0-9]+}/default": {
+      "put": {
+        "responses": null,
+        "tags": [
+          "Customer"
+        ],
+        "operationId": "Set default customer address for a customer",
+        "security": [
+          {
+            "APP_ACCESS_TOKEN": [
+              "write_customers"
+            ]
+          }
+        ]
+      }
+    },
+    "/admin/customers/{customer_id:[0-9]+}/orders": {
+      "get": {
+        "responses": null,
+        "tags": [
+          "Customer"
+        ],
+        "operationId": "Retrieves all orders belonging to a customer",
+        "security": [
+          {
+            "APP_ACCESS_TOKEN": [
+              "read_customers"
+            ]
+          }
+        ]
+      }
+    },
+    "/admin/customers/{customer_id:[0-9]+}/send_invite": {
+      "post": {
+        "responses": null,
+        "tags": [
+          "Customer"
+        ],
+        "operationId": "Send invitation email to customer",
+        "security": [
+          {
+            "APP_ACCESS_TOKEN": [
+              "write_customers"
+            ]
+          }
+        ]
+      }
+    },
+    "/admin/customers/{customer_id}/disable": {
+      "post": {
+        "responses": null,
+        "tags": [
+          "Customer"
+        ],
+        "operationId": "Disable customer",
+        "security": [
+          {
+            "SHOP_ACCESS_TOKEN": [
+              "write_customers"
+            ]
+          }
+        ]
+      }
+    },
+    "/admin/customers/{customer_id}/password/reset": {
+      "post": {
+        "responses": null,
+        "tags": [
+          "Customer"
+        ],
+        "operationId": "Reset Password",
+        "security": [
+          {
+            "SHOP_ACCESS_TOKEN": [
+              "write_customers"
+            ]
+          }
+        ]
+      }
+    },
+    "/admin/customers/{customer_id}/totalprices": {
+      "get": {
+        "responses": null,
+        "tags": [
+          "Customer"
+        ],
+        "operationId": "Get Lifetime spent and average order",
+        "security": [
+          {
+            "SHOP_ACCESS_TOKEN": [
+              "read_customers"
+            ]
+          }
+        ]
+      }
+    },
+    "/admin/customers/{id:\\\\d+}": {
+      "get": {
+        "summary": "Retrieves a single customer.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CustomerDto"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "customer_id",
+            "description": "Customer ID.",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "fields",
+            "description": "Show only certain fields, specified by a comma-separated list of field names.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Customer"
+        ],
+        "operationId": "Retrieves a single customer",
+        "security": [
+          {
+            "APP_ACCESS_TOKEN": [
+              "read_customers"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "responses": null,
+        "tags": [
+          "Customer"
+        ],
+        "operationId": "Updates a customer",
+        "security": [
+          {
+            "APP_ACCESS_TOKEN": [
+              "write_customers"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "schemes": null,
+  "consumes": null,
+  "produces": null,
+  "definitions": {
+    "Customer": {
+      "properties": {
+        "accepts_marketing": {
+          "type": "boolean",
+          "description": "Whether the customer has consented to receive marketing material via email.",
+          "example": true
+        },
+        "created_at": {
+          "type": "string",
+          "description": "The date and time (ISO 8601 format) when the customer was created.",
+          "format": "date-time",
+          "example": "2012-08-24T14:01:46-04:00"
+        },
+        "currency": {
+          "type": "string",
+          "description": "The three-letter code (ISO 4217 format) for the currency that the customer used when they paid for their last order. Defaults to the shop currency. Returns the shop currency for test orders.",
+          "example": "USD"
+        },
+        "email": {
+          "type": "string",
+          "description": "The unique email address of the customer. Attempting to assign the same email address to multiple customers returns an error.",
+          "example": "test@shopbase.com"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "The customer's first name.",
+          "example": "John"
+        },
+        "id": {
+          "type": "integer",
+          "description": "A unique identifier for the customer.",
+          "example": 107333978
+        },
+        "last_name": {
+          "type": "string",
+          "description": "The customer's last name.",
+          "example": "English"
+        },
+        "last_order_id": {
+          "type": "integer",
+          "description": "The ID of the customer's last order.",
+          "example": 234132602919
+        },
+        "last_order_name": {
+          "type": "string",
+          "description": "The name of the customer's last order. This is directly related to the name field on the Order resource.",
+          "example": "#1169"
+        },
+        "note": {
+          "type": "string",
+          "description": "A note about the customer.",
+          "example": "Placed an order that had a fraud warning"
+        },
+        "orders_count": {
+          "type": "integer",
+          "description": "The number of orders associated with this customer.",
+          "example": 6
+        },
+        "phone": {
+          "type": "string",
+          "description": "The unique phone number (E.164 format) for this customer. Attempting to assign the same phone number to multiple customers returns an error. The property can be set using different formats, but each format must represent a number that can be dialed from anywhere in the world. The following formats are all valid:\n * 6135551212 \n * +16135551212 \n * (613)555-1212 \n * +1 613-555-1212",
+          "example": "+16135551111"
+        },
+        "state": {
+          "type": "string",
+          "description": "The state of the customer's account with a shop. Default value: disabled. Valid values:\n\n * **disabled**: The customer doesn't have an active account. Customer acounts can be disabled from the Shopify admin at any time.\n * **invited**: The customer has received an emailed invite to create an account.\n * **enabled**: The customer has created an account.\n * **declined**: The customer declined the email invite to create an account.",
+          "example": "disabled"
+        },
+        "tags": {
+          "type": "string",
+          "description": "Tags that the shop owner has attached to the customer, formatted as a string of comma-separated values.",
+          "example": "loyal"
+        },
+        "tax_exempt": {
+          "type": "boolean",
+          "description": "Whether the customer is exempt from paying taxes on their order. If true, then taxes won't be applied to an order at checkout. If false, then taxes will be applied at checkout.",
+          "example": true
+        },
+        "total_spent": {
+          "type": "number",
+          "description": "The total amount of money that the customer has spent across their order history.",
+          "example": 37.96
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "The date and time (ISO 8601 format) when the customer information was last updated.",
+          "format": "date-time",
+          "example": "2012-08-24T14:01:46-04:00"
+        },
+        "verified_email": {
+          "type": "boolean",
+          "description": "Whether the customer has verified their email address.",
+          "example": true
+        }
+      },
+      "type": "object"
+    },
+    "CustomerAddress": {
+      "properties": {
+        "address1": {
+          "type": "string",
+          "description": "The customer's mailing address."
+        },
+        "address2": {
+          "type": "string",
+          "description": "An additional field for the customer's mailing address."
+        },
+        "city": {
+          "type": "string",
+          "description": "The customer's city, town, or village."
+        },
+        "company": {
+          "type": "string",
+          "description": "The customer's company."
+        },
+        "country_id": {
+          "type": "integer",
+          "description": "A unique identifier for the customer."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "The customer's first name."
+        },
+        "id": {
+          "type": "integer",
+          "description": "A unique identifier for the address."
+        },
+        "last_name": {
+          "type": "string",
+          "description": "The customer's last name."
+        },
+        "latitude": {
+          "type": "number"
+        },
+        "longitude": {
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "province": {
+          "type": "string"
+        },
+        "province_id": {
+          "type": "integer"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "zip": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomerAddressDetail": {
+      "properties": {
+        "address1": {
+          "type": "string",
+          "description": "The customer's mailing address."
+        },
+        "address2": {
+          "type": "string",
+          "description": "An additional field for the customer's mailing address."
+        },
+        "city": {
+          "type": "string",
+          "description": "The customer's city, town, or village."
+        },
+        "company": {
+          "type": "string",
+          "description": "The customer's company."
+        },
+        "country": {
+          "type": "string",
+          "description": "The customer's country."
+        },
+        "country_code": {
+          "type": "string",
+          "description": "The two-letter country code corresponding to the customer's country."
+        },
+        "country_id": {
+          "type": "integer",
+          "description": "A unique identifier for the customer."
+        },
+        "country_name": {
+          "type": "string",
+          "description": "The customer's normalized country name."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "default": {
+          "type": "boolean",
+          "description": "Whether this address is the default address for the customer."
+        },
+        "first_name": {
+          "type": "string",
+          "description": "The customer's first name."
+        },
+        "id": {
+          "type": "integer",
+          "description": "A unique identifier for the address."
+        },
+        "last_name": {
+          "type": "string",
+          "description": "The customer's last name."
+        },
+        "latitude": {
+          "type": "number"
+        },
+        "longitude": {
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "province": {
+          "type": "string"
+        },
+        "province_code": {
+          "type": "string",
+          "description": "The code for the region of the address, such as the province, state, or district. For example QC for Quebec, Canada."
+        },
+        "province_id": {
+          "type": "integer"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "zip": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomerAddressExtraData": {
+      "properties": {
+        "country": {
+          "type": "string",
+          "description": "The customer's country."
+        },
+        "country_code": {
+          "type": "string",
+          "description": "The two-letter country code corresponding to the customer's country."
+        },
+        "country_name": {
+          "type": "string",
+          "description": "The customer's normalized country name."
+        },
+        "province_code": {
+          "type": "string",
+          "description": "The code for the region of the address, such as the province, state, or district. For example QC for Quebec, Canada."
+        }
+      },
+      "type": "object"
+    },
+    "CustomerDto": {
+      "properties": {
+        "accepts_marketing": {
+          "type": "boolean",
+          "description": "Whether the customer has consented to receive marketing material via email.",
+          "example": true
+        },
+        "addresses": {
+          "items": {
+            "$ref": "#/definitions/CustomerAddressDetail"
+          },
+          "type": "array",
+          "description": "A list of the ten most recently updated addresses for the customer."
+        },
+        "created_at": {
+          "type": "string",
+          "description": "The date and time (ISO 8601 format) when the customer was created.",
+          "format": "date-time",
+          "example": "2012-08-24T14:01:46-04:00"
+        },
+        "currency": {
+          "type": "string",
+          "description": "The three-letter code (ISO 4217 format) for the currency that the customer used when they paid for their last order. Defaults to the shop currency. Returns the shop currency for test orders.",
+          "example": "USD"
+        },
+        "default_address": {
+          "$ref": "#/definitions/CustomerAddressDetail",
+          "description": "The default address for the customer."
+        },
+        "email": {
+          "type": "string",
+          "description": "The unique email address of the customer. Attempting to assign the same email address to multiple customers returns an error.",
+          "example": "test@shopbase.com"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "The customer's first name.",
+          "example": "John"
+        },
+        "id": {
+          "type": "integer",
+          "description": "A unique identifier for the customer.",
+          "example": 107333978
+        },
+        "last_name": {
+          "type": "string",
+          "description": "The customer's last name.",
+          "example": "English"
+        },
+        "last_order_id": {
+          "type": "integer",
+          "description": "The ID of the customer's last order.",
+          "example": 234132602919
+        },
+        "last_order_name": {
+          "type": "string",
+          "description": "The name of the customer's last order. This is directly related to the name field on the Order resource.",
+          "example": "#1169"
+        },
+        "note": {
+          "type": "string",
+          "description": "A note about the customer.",
+          "example": "Placed an order that had a fraud warning"
+        },
+        "orders_count": {
+          "type": "integer",
+          "description": "The number of orders associated with this customer.",
+          "example": 6
+        },
+        "phone": {
+          "type": "string",
+          "description": "The unique phone number (E.164 format) for this customer. Attempting to assign the same phone number to multiple customers returns an error. The property can be set using different formats, but each format must represent a number that can be dialed from anywhere in the world. The following formats are all valid:\n * 6135551212 \n * +16135551212 \n * (613)555-1212 \n * +1 613-555-1212",
+          "example": "+16135551111"
+        },
+        "state": {
+          "type": "string",
+          "description": "The state of the customer's account with a shop. Default value: disabled. Valid values:\n\n * **disabled**: The customer doesn't have an active account. Customer acounts can be disabled from the Shopify admin at any time.\n * **invited**: The customer has received an emailed invite to create an account.\n * **enabled**: The customer has created an account.\n * **declined**: The customer declined the email invite to create an account.",
+          "example": "disabled"
+        },
+        "tags": {
+          "type": "string",
+          "description": "Tags that the shop owner has attached to the customer, formatted as a string of comma-separated values.",
+          "example": "loyal"
+        },
+        "tax_exempt": {
+          "type": "boolean",
+          "description": "Whether the customer is exempt from paying taxes on their order. If true, then taxes won't be applied to an order at checkout. If false, then taxes will be applied at checkout.",
+          "example": true
+        },
+        "total_spent": {
+          "type": "number",
+          "description": "The total amount of money that the customer has spent across their order history.",
+          "example": 37.96
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "The date and time (ISO 8601 format) when the customer information was last updated.",
+          "format": "date-time",
+          "example": "2012-08-24T14:01:46-04:00"
+        },
+        "verified_email": {
+          "type": "boolean",
+          "description": "Whether the customer has verified their email address.",
+          "example": true
+        }
+      },
+      "type": "object"
+    },
+    "CustomerForResponse": {
+      "properties": {
+        "customers": {
+          "items": {
+            "$ref": "#/definitions/CustomerDto"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "securityDefinitions": {
+    "APP_ACCESS_TOKEN": {
+      "type": "apiKey",
+      "name": "APP_ACCESS_TOKEN",
+      "in": "header"
+    },
+    "SHOP_ACCESS_TOKEN": {
+      "type": "apiKey",
+      "name": "SHOP_ACCESS_TOKEN",
+      "in": "header"
+    }
+  }
+}

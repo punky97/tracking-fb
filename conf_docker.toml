@@ -1,0 +1,11 @@
+[redis]
+address = "localhost:6379"
+
+[rabbitmq]
+uri="amqp://guest:guest@localhost:5672/vhost"
+retries=3
+internal_queue_size=1000
+
+[http_client]
+timeout = 30
+path = "https://graph.facebook.com/v11.0"

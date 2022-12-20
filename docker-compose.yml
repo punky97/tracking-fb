@@ -1,0 +1,52 @@
+version: "3.5"
+services:
+  fb-tracking-consumer:
+    image: "fb-tracking-consumer:1"
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        BIN: "cmd/consumer/facebook-tracking"
+    volumes:
+      - ./cmd/consumer/facebook-tracking/app/task.json:/app/task.json
+      - ./conf_docker.toml:/app/conf.toml
+    environment:
+      ENV: prod
+
+    entrypoint:
+      [
+        "./run.sh",
+        "start",
+        "-config-type=file",
+        "-config-file=/app/conf.toml",
+        "-http-port=30099",
+        "-logger-dev=true",
+        "-logger-type=default",
+        "-sd-enable=false",
+      ]
+    network_mode: "host"
+    restart: always
+  tracking-api:
+    image: "tracking-api:1"
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        BIN: "cmd/api/tracking-api"
+    volumes:
+      - ./conf_docker.toml:/app/conf.toml
+    environment:
+      ENV: prod
+
+    entrypoint:
+      [
+        "./run.sh",
+        "start",
+        "-config-type=file",
+        "-config-file=/app/conf.toml",
+        "-http-port=30077",
+        "-logger-dev=true",
+        "-logger-type=default",
+      ]
+    network_mode: "host"
+    restart: always

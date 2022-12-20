@@ -1,0 +1,14 @@
+#[notifier]
+#    [notifier.plugins.slack]
+#        enable=true
+#        webhook="https://hooks.slack.com/services/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"
+#    [notifier.plugins.sentry]
+#        enable=true
+#        dsn="https://5d301c99ed8346b5b6726041782e1d12@sentry.io/1529071"
+#    [notifier.plugins.email]
+#        enable=true
+#        domain="em1.domain.com"
+#        api_key="key-a03a2a2f44d592fe41682143a290f618"
+#        public_key="pubkey-b6f0bede68c216c549f8da89d0a92653"
+#        mail_from="Name Team <hi@domain.com>"
+#        mail_to="test@gmail.net"
