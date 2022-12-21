@@ -8,7 +8,7 @@ import (
 )
 
 func GetPixelByCode(code string) []*dto.Pixel {
-	pixelWithToken := viper.GetString(fmt.Sprintf("tracking.code"))
+	pixelWithToken := viper.GetString(fmt.Sprintf("tracking.%v", code))
 	if len(pixelWithToken) < 1 {
 		return nil
 	}

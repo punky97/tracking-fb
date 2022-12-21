@@ -12,3 +12,8 @@ type Action struct {
 	Sources    []string
 	Code       string
 }
+
+type TrackingBody struct {
+	EventType string                 `json:"event_type"`
+	Payload   map[string]interface{} `json:"payload"`
+}

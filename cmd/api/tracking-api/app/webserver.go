@@ -5,6 +5,7 @@ import (
 	"github.com/punky97/go-codebase/core/drivers/bkredis"
 	"github.com/punky97/go-codebase/core/drivers/queue"
 	"github.com/punky97/go-codebase/core/transport/transhttp"
+	"github.com/spf13/viper"
 	"net/http"
 	"tracking-fb/cmd/api/tracking-api/app/handlers/tracking"
 )
@@ -18,7 +19,6 @@ type server struct {
 var s = &server{}
 
 func NewServer(apimonoApp *apimono.App) {
-	s.producer = apimonoApp.CreateRabbitMQProducerConnection(nil)
 	apimonoApp.AddRoutes(s.InitTrackingRoutes(apimonoApp.HTTPBasePath))
 }
 
@@ -27,6 +27,10 @@ func OnClose() {
 }
 
 func (s *server) InitTrackingRoutes(basePath string) transhttp.Routes {
+	rawPath := viper.GetString("http_client.path")
+	if len(rawPath) == 0 {
+		rawPath = "https://graph.facebook.com/v11.0"
+	}
 	return transhttp.Routes{
 		transhttp.Route{
 			Name:     "",
@@ -34,7 +38,7 @@ func (s *server) InitTrackingRoutes(basePath string) transhttp.Routes {
 			BasePath: basePath,
 			Pattern:  "/track",
 			Handler: &tracking.TrackingHandler{
-				Producer: s.producer,
+				RawPath: rawPath,
 			},
 		},
 	}
